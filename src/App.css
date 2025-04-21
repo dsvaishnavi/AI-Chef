@@ -1,38 +1,468 @@
-.App {
-  text-align: center;
+/* Base Styles */
+:root {
+  --primary-color: #ff6b6b;
+  --primary-light: #ff8e8e;
+  --primary-dark: #e05555;
+  --secondary-color: #4ecdc4;
+  --light-bg: #f7fff7;
+  --dark-text: #292f36;
+  --light-text: #f7fff7;
+  --gray-bg: #f0f4f7;
+  --success-color: #6bcb77;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--light-bg);
+  color: var(--dark-text);
+  line-height: 1.6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  flex: 1;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-light) 100%
+  );
+  color: var(--light-text);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.header p {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Filter Section */
+.filter-section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.diet-filter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.diet-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--gray-bg);
+  color: var(--dark-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 0.5rem;
+}
+
+.diet-btn.active {
+  background: var(--primary-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.diet-btn:hover:not(.active) {
+  background: #e0e0e0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.diet-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Ingredient Input Styles */
+.ingredient-input-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-group input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: var(--light-bg);
+}
+
+.input-group input:focus {
+  background: white;
+}
+
+.input-group button {
+  padding: 0 1.8rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.input-group button:hover {
+  background: var(--primary-dark);
+}
+
+.ingredient-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.ingredient-tag {
+  background: var(--secondary-color);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remove-tag {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.8;
+}
+
+.remove-tag:hover {
+  opacity: 1;
+}
+
+.search-button {
+  display: block;
+  width: 100%;
+  padding: 1.2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.search-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+}
+
+.search-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Recipe Grid Styles */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.recipe-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.recipe-info {
+  padding: 1.5rem;
+}
+
+.recipe-info h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.3rem;
+  color: var(--dark-text);
+  font-weight: 600;
+}
+
+.recipe-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.recipe-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.recipe-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #777;
+}
+
+.view-recipe {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.view-recipe:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Loading Spinner Styles */
+.loading-spinner {
+  text-align: center;
+  padding: 4rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 107, 107, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.loading-spinner p {
+  font-size: 1.1rem;
+  color: var(--dark-text);
+  opacity: 0.8;
+}
+
+/* Error Message Styles */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  text-align: center;
+  font-weight: 500;
+  border-left: 4px solid #c62828;
+}
+
+.no-recipes {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Badges */
+.veg-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--success-color);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.2rem;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .diet-filter {
+    justify-content: center;
+  }
+
+  .input-group input {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ingredient-input-container {
+    padding: 1.5rem;
+  }
+
+  .diet-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+/* In your App.css */
+.filter-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+}
+
+.filter-row {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+}
+
+.filter-group h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 20px;
+  background: #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  gap: 0.8rem;
+}
+
+.filter-btn.active {
+  background: #ff6b6b;
+  color: white;
+}
+
+.filter-btn:hover:not(.active) {
+  background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .filter-buttons {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
   }
 }
