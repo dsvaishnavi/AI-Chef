@@ -14,7 +14,8 @@ function App() {
   const [dietType, setDietType] = useState("all");
   const [cuisineType, setCuisineType] = useState("all");
 
-  const API_KEY = "82c5ff844139474f8d420c805aad09f8";
+  const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const handleSearch = async () => {
     if (ingredients.length === 0) {
